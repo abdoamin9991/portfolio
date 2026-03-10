@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abdelrhman Amin — Skills Brief</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #0a0a0f;
+  --surface: #111118;
+  --surface-2: #1a1a24;
+  --border: #2a2a3a;
+  --text: #e8e8ef;
+  --text-muted: #8888a0;
+  --accent: #6366f1;
+  --accent-glow: rgba(99, 102, 241, 0.15);
+  --green: #34d399;
+  --amber: #fbbf24;
+  --rose: #f472b6;
+  --cyan: #22d3ee;
+  --font: 'DM Sans', sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Grain overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ─── Hero ─── */
+.hero {
+  padding: 80px 0 60px;
+  position: relative;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-label {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards 0.2s;
+}
+
+.hero h1 {
+  font-size: clamp(36px, 6vw, 56px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -1.5px;
+  margin-bottom: 12px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards 0.4s;
+}
+
+.hero h1 span { color: var(--accent); }
+
+.hero-subtitle {
+  font-size: 18px;
+  color: var(--text-muted);
+  max-width: 560px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards 0.6s;
+}
+
+.hero-meta {
+  display: flex;
+  gap: 24px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards 0.8s;
+}
+
+.hero-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.hero-meta-item .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ─── Stat Cards ─── */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  padding: 0 0 60px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards 1s;
+}
+
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.stat-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+}
+
+.stat-card:nth-child(1)::before { background: var(--accent); }
+.stat-card:nth-child(2)::before { background: var(--green); }
+.stat-card:nth-child(3)::before { background: var(--amber); }
+.stat-card:nth-child(4)::before { background: var(--rose); }
+
+.stat-number {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  margin-bottom: 4px;
+}
+
+.stat-card:nth-child(1) .stat-number { color: var(--accent); }
+.stat-card:nth-child(2) .stat-number { color: var(--green); }
+.stat-card:nth-child(3) .stat-number { color: var(--amber); }
+.stat-card:nth-child(4) .stat-number { color: var(--rose); }
+
+.stat-label {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ─── Sections ─── */
+.section {
+  padding: 48px 0;
+  border-top: 1px solid var(--border);
+}
+
+.section-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.section h2 {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin-bottom: 32px;
+}
+
+/* ─── Tech Stack ─── */
+.stack-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.stack-category {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  transition: border-color 0.3s;
+}
+
+.stack-category:hover { border-color: var(--accent); }
+
+.stack-category h3 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stack-category h3 .icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+}
+
+.stack-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  font-family: var(--mono);
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: var(--surface-2);
+  color: var(--text-muted);
+  border: 1px solid transparent;
+  transition: all 0.2s;
+}
+
+.tag:hover {
+  color: var(--text);
+  border-color: var(--border);
+}
+
+.tag.primary {
+  background: var(--accent-glow);
+  color: var(--accent);
+  border-color: rgba(99, 102, 241, 0.2);
+}
+
+/* ─── Project Showcases ─── */
+.project-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+
+.project-card:hover { border-color: var(--accent); }
+
+.project-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  opacity: 0.03;
+  pointer-events: none;
+}
+
+.project-card:nth-child(1)::after { background: var(--accent); }
+.project-card:nth-child(2)::after { background: var(--green); }
+.project-card:nth-child(3)::after { background: var(--amber); }
+
+.project-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+}
+
+.project-card:nth-child(1) .project-badge {
+  color: var(--accent);
+  background: var(--accent-glow);
+}
+.project-card:nth-child(2) .project-badge {
+  color: var(--green);
+  background: rgba(52, 211, 153, 0.1);
+}
+.project-card:nth-child(3) .project-badge {
+  color: var(--amber);
+  background: rgba(251, 191, 36, 0.1);
+}
+
+.project-card h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.project-desc {
+  color: var(--text-muted);
+  font-size: 15px;
+  margin-bottom: 20px;
+  max-width: 640px;
+}
+
+.project-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.project-detail {
+  padding: 12px 16px;
+  background: var(--bg);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.project-detail-label {
+  font-size: 11px;
+  font-family: var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.project-detail-value {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* ─── Capabilities ─── */
+.capabilities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.capability-card {
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.capability-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.capability-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  margin-bottom: 14px;
+  background: var(--accent-glow);
+}
+
+.capability-card h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.capability-card p {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* ─── Timeline ─── */
+.timeline {
+  position: relative;
+  padding-left: 32px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: var(--border);
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 32px;
+}
+
+.timeline-item:last-child { padding-bottom: 0; }
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -28px;
+  top: 8px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  background: var(--bg);
+}
+
+.timeline-item:first-child::before {
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+
+.timeline-year {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+
+.timeline-item h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.timeline-item p {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* ─── Footer ─── */
+.footer {
+  padding: 48px 0;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.footer-cta {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.footer-email {
+  font-family: var(--mono);
+  font-size: 15px;
+  color: var(--accent);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.footer-email:hover { opacity: 0.8; }
+
+.footer-sub {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 16px;
+}
+
+/* ─── Animations ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 600px) {
+  .hero { padding: 48px 0 40px; }
+  .hero h1 { font-size: 32px; }
+  .hero-meta { gap: 12px; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .project-card { padding: 20px; }
+  .project-details { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-label">Skills Brief — 2026</div>
+    <h1>Abdelrhman <span>Amin</span></h1>
+    <p class="hero-subtitle">Full stack developer specializing in high-impact event platforms, admin systems, and e-commerce — from pixel-perfect UIs to robust Rails APIs.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><span class="dot"></span> Alexandria, Egypt</div>
+      <div class="hero-meta-item"><span class="dot"></span> 4+ Years Experience</div>
+      <div class="hero-meta-item"><span class="dot"></span> Frontend & Backend</div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <div class="stats">
+    <div class="stat-card">
+      <div class="stat-number">4+</div>
+      <div class="stat-label">Years in Production</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">3+</div>
+      <div class="stat-label">Global Events Shipped</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">Full</div>
+      <div class="stat-label">Stack Coverage</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">1M+</div>
+      <div class="stat-label">End Users Served</div>
+    </div>
+  </div>
+
+  <!-- Tech Stack -->
+  <section class="section reveal">
+    <div class="section-label">01 — Tech Stack</div>
+    <h2>What I Work With</h2>
+    <div class="stack-grid">
+      <div class="stack-category">
+        <h3><span class="icon" style="background:var(--accent-glow);color:var(--accent);">⚛</span> Frontend</h3>
+        <div class="stack-tags">
+          <span class="tag primary">React.js</span>
+          <span class="tag primary">Next.js</span>
+          <span class="tag primary">TypeScript</span>
+          <span class="tag primary">Tailwind CSS</span>
+          <span class="tag">JavaScript ES6+</span>
+          <span class="tag">HTML5</span>
+          <span class="tag">CSS3</span>
+        </div>
+      </div>
+      <div class="stack-category">
+        <h3><span class="icon" style="background:rgba(52,211,153,0.1);color:var(--green);">◆</span> Backend</h3>
+        <div class="stack-tags">
+          <span class="tag primary">Ruby on Rails</span>
+          <span class="tag primary">Spree Commerce</span>
+          <span class="tag">RESTful APIs</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">ActiveRecord</span>
+        </div>
+      </div>
+      <div class="stack-category">
+        <h3><span class="icon" style="background:rgba(251,191,36,0.1);color:var(--amber);">⚙</span> Tooling</h3>
+        <div class="stack-tags">
+          <span class="tag">Git</span>
+          <span class="tag">CI/CD</span>
+          <span class="tag">Agile / Scrum</span>
+          <span class="tag">Webpack</span>
+          <span class="tag">CMS</span>
+        </div>
+      </div>
+      <div class="stack-category">
+        <h3><span class="icon" style="background:rgba(244,114,182,0.1);color:var(--rose);">◎</span> Architecture</h3>
+        <div class="stack-tags">
+          <span class="tag">Design Systems</span>
+          <span class="tag">Component Libraries</span>
+          <span class="tag">Responsive Design</span>
+          <span class="tag">Performance Opt.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section class="section reveal">
+    <div class="section-label">02 — Delivered Work</div>
+    <h2>What I've Built</h2>
+
+    <div class="project-card">
+      <div class="project-badge">● Event Platform</div>
+      <h3>Global Event Dashboard & Portal System</h3>
+      <p class="project-desc">A full-featured admin dashboard, user portal, and attendee-facing platform deployed across international events — including the Qatar Hayya World Cup and SXSW London.</p>
+      <div class="project-details">
+        <div class="project-detail">
+          <div class="project-detail-label">Role</div>
+          <div class="project-detail-value">Lead Frontend Developer</div>
+        </div>
+        <div class="project-detail">
+          <div class="project-detail-label">Scale</div>
+          <div class="project-detail-value">Millions of event attendees</div>
+        </div>
+        <div class="project-detail">
+          <div class="project-detail-label">Stack</div>
+          <div class="project-detail-value">React · TypeScript · Rails</div>
+        </div>
+        <div class="project-detail">
+          <div class="project-detail-label">Scope</div>
+          <div class="project-detail-value">Admin, User & Public portals</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-badge">● E-Commerce</div>
+      <h3>Event Marketplace & Badge System</h3>
+      <p class="project-desc">An e-commerce platform built on Next.js and Rails Spree with a custom badge and attendance system — tracking sessions, roles, and event participation in real time.</p>
+      <div class="project-details">
+        <div class="project-detail">
+          <div class="project-detail-label">Role</div>
+          <div class="project-detail-value">Full Stack Developer</div>
+        </div>
+        <div class="project-detail">
+          <div class="project-detail-label">Features</div>
+          <div class="project-detail-value">Badge system, role tracking</div>
+        </div>
+        <div class="project-detail">
+          <div class="project-detail-label">Stack</div>
+          <div class="project-detail-value">Next.js · Spree · Rails</div>
+        </div>
+        <div class="project-detail">
+          <div class="project-detail-label">Integration</div>
+          <div class="project-detail-value">Session-based attendance</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-badge">● End-to-End</div>
+      <h3>Cross-Functional Delivery</h3>
+      <p class="project-desc">Contributed across the full stack — from building polished React interfaces and CMS-powered pages to designing API endpoints and data models in Rails — ensuring seamless end-to-end product delivery.</p>
+      <div class="project-details">
+        <div class="project-detail">
+          <div class="project-detail-label">Frontend</div>
+          <div class="project-detail-value">React, Next.js, Tailwind</div>
+        </div>
+        <div class="project-detail">
+          <div class="project-detail-label">Backend</div>
+          <div class="project-detail-value">Ruby on Rails APIs</div>
+        </div>
+        <div class="project-detail">
+          <div class="project-detail-label">CMS</div>
+          <div class="project-detail-value">Content management integration</div>
+        </div>
+        <div class="project-detail">
+          <div class="project-detail-label">Process</div>
+          <div class="project-detail-value">Agile, event-driven deadlines</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Capabilities -->
+  <section class="section reveal">
+    <div class="section-label">03 — Capabilities</div>
+    <h2>What I Bring</h2>
+    <div class="capabilities-grid">
+      <div class="capability-card">
+        <div class="capability-icon">🏗</div>
+        <h3>System Architecture</h3>
+        <p>Design multi-portal systems with admin, user, and public-facing layers that scale for global events.</p>
+      </div>
+      <div class="capability-card">
+        <div class="capability-icon">⚡</div>
+        <h3>Performance</h3>
+        <p>Build fast, responsive frontends with optimized rendering, lazy loading, and efficient state management.</p>
+      </div>
+      <div class="capability-card">
+        <div class="capability-icon">🔗</div>
+        <h3>API Design</h3>
+        <p>Create clean, well-documented RESTful APIs in Rails with proper authentication and authorization layers.</p>
+      </div>
+      <div class="capability-card">
+        <div class="capability-icon">🎨</div>
+        <h3>Design Systems</h3>
+        <p>Build and maintain component libraries and design systems that ensure UI consistency across products.</p>
+      </div>
+      <div class="capability-card">
+        <div class="capability-icon">🛒</div>
+        <h3>E-Commerce</h3>
+        <p>Integrate commerce solutions with Spree, custom checkout flows, badge systems, and role-based access.</p>
+      </div>
+      <div class="capability-card">
+        <div class="capability-icon">🚀</div>
+        <h3>Deadline Delivery</h3>
+        <p>Ship production systems for hard-deadline events — no extensions when the World Cup starts.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Journey -->
+  <section class="section reveal">
+    <div class="section-label">04 — Journey</div>
+    <h2>Career Path</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-year">2026 — Present</div>
+        <h3>Backend Developer</h3>
+        <p>Ruby on Rails — building APIs, services, and data layers. Full stack contributions across the board.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2022 — 2025</div>
+        <h3>Frontend Developer — Blink</h3>
+        <p>Led frontend for global event platforms. React, Next.js, TypeScript. Shipped for World Cup Qatar, SXSW London, and more.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2021 — 2022</div>
+        <h3>Getting Started</h3>
+        <p>Entered professional development. Built foundation in JavaScript, React, and modern frontend tooling.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <section class="footer reveal">
+    <div class="footer-cta">Let's build something.</div>
+    <a href="mailto:abdo.amin9991@gmail.com" class="footer-email">abdo.amin9991@gmail.com</a>
+    <div class="footer-sub">Alexandria, Egypt · +20 1096270959</div>
+  </section>
+
+</div>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
